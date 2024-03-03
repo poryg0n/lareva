@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Effacer une publication{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+           {% if user.id == post.author.id %}
+
+                <h1> Effacer Publication... </h1>
+                    <br/><br/>
+                    <h3> Effacer: {{ post.title }} </h3>
+                
+                <div class="form-group">
+                <form method="POST">
+                    {% csrf_token %}
+                    <strong>Etes vous s&ucirc;r(e)?!</strong><br/>
+                    <button class="btn btn-dark" type="submit">Effacer</button>
+                </form>
+                </div>
+           {% else %}
+		<h2>Vous n'&egrave;etes pas autoris&eacute;(e) &agrave; ex&eacute;cuter cette action.</h2>
+           {% endif %}
+{% else %}
+    <h2>Vous n'&egrave;etes pas autoris&eacute;(e) &agrave; ex&eacute;cuter cette action.</h2>
+
+{% endif %}
+{% endblock %}

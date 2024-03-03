@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %} Create a new category{% endblock %}
+
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+{% if user.is_superuser %}
+<h1>Cr&eacute;er une cat&eacute;gorie</h1>
+    <br/><br/>
+<div class="form-group">
+<form method="POST">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <br/><br/>
+    <button class="btn btn-dark" type="submit">Ajouter</button>
+</form>
+</div>
+{% else %}
+<h2>Vous n'&egrave;etes pas autoris&eacute;(e) &agrave; ex&eacute;cuter cette action.</h2>
+{% endif %}
+{% endblock %}

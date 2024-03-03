@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Effacer une page{% endblock %}
+
+
+{% block content %}
+{% if user.is_superuser %}
+<h1>Effacer la page </h1>
+    <br/><br/>
+    <h3> Effacer: {{ post.name }} </h3>
+
+<div class="form-group">
+<form method="POST">
+    {% csrf_token %}
+    <strong>Etes vous s&ucirc;(e)?!</strong><br/>
+    <button class="btn btn-dark" type="submit">Effacer</button>
+</form>
+</div>
+{% else %}
+<h2>Vous n'&egrave;etes pas autoris&eacute;(e) &agrave; ex&eacute;cuter cette action.</h2>
+
+{% endif %}
+{% endblock %}
